@@ -1,0 +1,80 @@
+import mysql.connecto as a con=a.connect(host='localhost',user='root',passwd='1234',database='zoo')
+
+def insertanimal():
+    A_id=int(input("Enter Animal ID: "))
+    E_id=int(input("Enter Employee ID: "))
+    A_name=input("Enter Animal name: ")
+    A_breed=input("Enter Animal breed: ")
+    A_food=input("Enter Animal food item ")
+    A_age=int(input("Enter Animal age "))
+    data1=( A_id,E_id,A_name,A_breed,A_food,A_age)
+    sql1='insert into animal values(%s,%s,%s,%s,%s,%s,%s)'
+    c=con.cursor()
+    c.execute(sql1,data1)
+    con.commit()
+    print("Data entered successfully")
+    main()
+    
+    
+def insertemp():
+    E_id=int(input("Enter Employee ID: "))
+    E_name=input("Enter Employee name: ")
+    E_pho=int(input("Enter Employee phone number: "))
+    E_sal=int(input("Enter Employee salary "))
+    E_desg=input("Enter Employee designation ")
+    E_shift=input("Enter Employee shift timing: ")
+    E_add=input("Enter Employee address: ")
+    data=( E_id,E_name,E_pho,E_sal,E_desg,E_shift,E_add)
+    sql1='insert into animal values(%s,%s,%s,%s,%s,%s,%s)'
+    c=con.cursor()
+    c.execute(sql1,data)
+    con.commit()
+    print("Data entered successfully")
+    main()
+    
+def insertcaretaker():
+    D_id=int(input("Enter Caretaker ID: "))
+    D_name=input("Enter Caretaker name: ")
+    A_id=int(input("Enter Animal ID: "))
+    no_of_visits=int(input("Enter number of visits"))
+    data=( A_id,E_id,A_name,A_breed,A_food,A_age)
+    sql1='insert into animal values(%s,%s,%s,%s,%s,%s,%s)'
+    c=con.cursor()
+    c.execute(sql1,data)
+    con.commit()
+    print("Data entered successfully")
+    main()
+        
+    
+
+def search():
+    a=input("Animal ID:")
+    s="select * from animal where a_id=%s"
+    data=(a,)
+    c=con.cursor()
+    c.execute(s,data)
+    myresult=c.fetchone()
+    for i in myresult:
+        print(i,end='')
+    main()
+    
+    
+
+
+def main():
+    print(""" 1. Insert Employee details \n 2.Insert Animal details\n 3.Insert Caretaker details\n 4.Search Animal
+    """
+    c=int(input("Enter your chioce")))
+    if c==1:
+        insertemp()
+    elif c==2:
+        insertanimal()
+    elif c==3:
+        insercaretaker()
+    elif c==4:
+        search()
+    else:
+        print("Wrong choice, please choose correctly")
+        main()
+main()
+
